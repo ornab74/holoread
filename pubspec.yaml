@@ -36,7 +36,7 @@ dependencies:
 hooks:
   user_defines:
     sqlite3:
-      source: sqlcipher
+      source: sqlite3
 
 dev_dependencies:
   flutter_test:
