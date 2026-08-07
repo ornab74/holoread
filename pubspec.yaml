@@ -28,6 +28,11 @@ dependencies:
   collection: ^1.19.1
   cupertino_icons: ^1.0.8
 
+  # path_provider_android 2.3.1 uses JNI-generated bindings. Pin the
+  # compatible JNI runtime pair so local caches cannot resolve mismatched APIs.
+  jni: 1.0.3
+  jni_flutter: 1.0.2
+
 hooks:
   user_defines:
     sqlite3:
