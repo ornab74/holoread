@@ -2,7 +2,7 @@ class AppConfig {
   const AppConfig._();
 
   static const String appName = 'HoloRead';
-  static const String databaseName = 'holoread_encrypted.sqlite';
+  static const String databaseName = 'holoread.sqlite';
   static const int databaseSchemaVersion = 1;
   static const String sheetName = 'Books';
 
