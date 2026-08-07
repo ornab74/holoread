@@ -8,7 +8,6 @@ import 'package:sqlite3/sqlite3.dart';
 import '../../models/book.dart';
 import '../../models/reading_session.dart';
 import '../config/app_config.dart';
-import '../security/key_manager.dart';
 
 class AppDatabase {
   AppDatabase._(this._db);
@@ -16,21 +15,11 @@ class AppDatabase {
   final Database _db;
   final StreamController<void> _changes = StreamController<void>.broadcast();
 
-  static Future<AppDatabase> open({KeyManager? keyManager}) async {
+  static Future<AppDatabase> open() async {
     final directory = await getApplicationSupportDirectory();
     final databasePath = p.join(directory.path, AppConfig.databaseName);
-    final key = await (keyManager ?? KeyManager()).loadOrCreateDatabaseKey();
-    final hexKey = key.map((byte) => byte.toRadixString(16).padLeft(2, '0')).join();
 
     final db = sqlite3.open(databasePath);
-    db.execute("PRAGMA key = \"x'$hexKey'\";");
-    final cipher = db.select('PRAGMA cipher_version;');
-    if (cipher.isEmpty) {
-      db.close();
-      throw StateError(
-        'Encrypted SQLite is unavailable. Verify the sqlite3 SQLCipher hook.',
-      );
-    }
     db.execute('PRAGMA foreign_keys = ON;');
     db.execute('PRAGMA journal_mode = WAL;');
     db.execute('PRAGMA synchronous = NORMAL;');
