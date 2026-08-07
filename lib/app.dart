@@ -78,10 +78,10 @@ class _StartupGate extends ConsumerWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  const Icon(Icons.lock_reset_rounded, size: 54),
+                  const Icon(Icons.storage_rounded, size: 54),
                   const SizedBox(height: 16),
                   Text(
-                    'Encrypted library initialization failed',
+                    'Library database initialization failed',
                     style: Theme.of(context).textTheme.headlineSmall,
                     textAlign: TextAlign.center,
                   ),
@@ -148,7 +148,7 @@ class _BootScreenState extends State<_BootScreen>
                     ),
               ),
               const SizedBox(height: 10),
-              const Text('Unlocking encrypted knowledge field…'),
+              const Text('Opening local reading intelligence library…'),
               const SizedBox(height: 22),
               const SizedBox(
                 width: 220,
